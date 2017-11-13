@@ -40,7 +40,7 @@ public class Servidor implements Runnable {
 		// Nome do cliente
 
 		mensagemTexto = scanner.nextLine();
-		mensagem = trataMensagem(mensagemTexto);
+		mensagem = Mensagem.trataMensagem(mensagemTexto);
 
 		if (mensagem.getCategoria() == CategoriaMensagem.SET_NAME) {
 			cliente.setNome(mensagem.getValue());
@@ -52,7 +52,7 @@ public class Servidor implements Runnable {
 
 		while (mensagem.getCategoria() != CategoriaMensagem.EXIT) {
 			mensagemTexto = scanner.nextLine();
-			mensagem = trataMensagem(mensagemTexto);
+			mensagem = Mensagem.trataMensagem(mensagemTexto);
 
 			System.out.println(mensagem);
 
@@ -96,7 +96,7 @@ public class Servidor implements Runnable {
 				new Thread(sala).start();
 
 				return;
-				//break;
+				// break;
 			}
 
 			case EXIT: {
@@ -109,28 +109,6 @@ public class Servidor implements Runnable {
 
 		}
 
-	}
-
-	public Mensagem trataMensagem(String texto) {
-		Mensagem mensagem = null;
-		if (texto.matches(CategoriaMensagem.SET_NAME.getRegex())) {
-			String[] tokens = texto.split(" ");
-			mensagem = new Mensagem(CategoriaMensagem.SET_NAME, tokens[1]);
-		} else if (texto.matches(CategoriaMensagem.OPEN_ROOM.getRegex())) {
-			String[] tokens = texto.split(" ");
-			mensagem = new Mensagem(CategoriaMensagem.OPEN_ROOM, tokens[1]);
-		} else if (texto.matches(CategoriaMensagem.ENTER_ROOM.getRegex())) {
-			String[] tokens = texto.split(" ");
-			mensagem = new Mensagem(CategoriaMensagem.ENTER_ROOM, tokens[1]);
-		} else if (texto.matches(CategoriaMensagem.GET_ROOMS.getRegex())) {
-			mensagem = new Mensagem(CategoriaMensagem.GET_ROOMS);
-		} else if (texto.matches(CategoriaMensagem.EXIT.getRegex())) {
-			mensagem = new Mensagem(CategoriaMensagem.EXIT);
-		} else {
-			mensagem = new Mensagem(CategoriaMensagem.INVALIDA);
-		}
-
-		return mensagem;
 	}
 
 }

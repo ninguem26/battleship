@@ -4,8 +4,9 @@ import java.net.Socket;
 
 public class Cliente {
 	private String nome;
-	private int[] tabuleiro;
+	private int[][] tabuleiro;
 	private Socket socket;
+	private int pontuacao;
 
 	public String getNome() {
 		return nome;
@@ -15,11 +16,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public int[] getTabuleiro() {
+	public int[][] getTabuleiro() {
 		return tabuleiro;
 	}
 
-	public void setTabuleiro(int[] tabuleiro) {
+	public void setTabuleiro(int[][] tabuleiro) {
 		this.tabuleiro = tabuleiro;
 	}
 
@@ -29,6 +30,14 @@ public class Cliente {
 
 	public void setSocket(Socket socket) {
 		this.socket = socket;
+	}
+
+	public int getPontuacao() {
+		return pontuacao;
+	}
+
+	public void setPontuacao(int pontuacao) {
+		this.pontuacao = pontuacao;
 	}
 
 	@Override

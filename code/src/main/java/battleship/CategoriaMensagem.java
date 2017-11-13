@@ -6,6 +6,8 @@ public enum CategoriaMensagem {
 	GET_ROOMS("GET_ROOMS"),
 	ENTER_ROOM("ENTER_ROOM (\\w+)"),
 	EXIT("EXIT"),
+	BOARD("BOARD \\d{100}\\b"),
+	ATTACK("ATTACK \\d{2}\\b"),
 	INVALIDA("");
 
 	private String regex;
