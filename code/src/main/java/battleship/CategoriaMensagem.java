@@ -2,6 +2,7 @@ package battleship;
 
 public enum CategoriaMensagem {
 	SET_NAME("SET_NAME (\\w+)"),
+	WELCOME("WELCOME"),
 	OPEN_ROOM("OPEN_ROOM (\\w+)"),
 	GET_ROOMS("GET_ROOMS"),
 	ENTER_ROOM("ENTER_ROOM (\\w+)"),

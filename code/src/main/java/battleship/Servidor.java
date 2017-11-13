@@ -10,14 +10,11 @@ import java.util.Scanner;
 public class Servidor implements Runnable {
 
 	private static List<Sala> salas = new ArrayList<Sala>();
-	private Socket socket;
 	private Cliente cliente;
 	private Scanner scanner;
 	private PrintStream printStream;
 
 	public Servidor(Socket socket) {
-		this.socket = socket;
-
 		this.cliente = new Cliente();
 		this.cliente.setSocket(socket);
 
@@ -48,16 +45,15 @@ public class Servidor implements Runnable {
 
 		System.out.println("Cliente " + cliente.getNome());
 
+		printStream.println("WELCOME");
+
 		// Sala
 
 		while (mensagem.getCategoria() != CategoriaMensagem.EXIT) {
 			mensagemTexto = scanner.nextLine();
 			mensagem = Mensagem.trataMensagem(mensagemTexto);
 
-			System.out.println(mensagem);
-
-			switch (mensagem.getCategoria()) {
-			case OPEN_ROOM: {
+			if (mensagem.getCategoria() == CategoriaMensagem.OPEN_ROOM) {
 
 				Sala sala = new Sala(mensagem.getValue(), cliente);
 
@@ -67,24 +63,18 @@ public class Servidor implements Runnable {
 
 				return;
 
-				// Thread.currentThread().interrupt();
-				// break;
-			}
-			case GET_ROOMS: {
+			} else if (mensagem.getCategoria() == CategoriaMensagem.GET_ROOMS) {
 				StringBuilder sb = new StringBuilder();
 				for (int i = 0; i < salas.size(); i++) {
 					Sala sala = salas.get(i);
 					if (sala != null && !sala.cheia()) {
 						sb.append(i + " " + sala.getNome() + " " + sala.getDono().getNome());
-						sb.append("#");
+						sb.append("\n");
 					}
-
 				}
-
 				printStream.println(sb.toString());
 				break;
-			}
-			case ENTER_ROOM: {
+			} else if (mensagem.getCategoria() == CategoriaMensagem.ENTER_ROOM) {
 				int n = Integer.parseInt(mensagem.getValue());
 
 				Sala sala = salas.get(n);
@@ -96,17 +86,7 @@ public class Servidor implements Runnable {
 				new Thread(sala).start();
 
 				return;
-				// break;
 			}
-
-			case EXIT: {
-				break;
-			}
-			default:
-				System.err.println("Mensagem inválida");
-				break;
-			}
-
 		}
 
 	}
