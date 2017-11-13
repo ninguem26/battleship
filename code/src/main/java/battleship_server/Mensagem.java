@@ -1,4 +1,4 @@
-package battleship;
+package battleship_server;
 
 public class Mensagem {
 	private CategoriaMensagem categoria;

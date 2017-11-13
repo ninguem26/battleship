@@ -1,4 +1,4 @@
-package battleship;
+package battleship_server;
 
 import java.net.Socket;
 

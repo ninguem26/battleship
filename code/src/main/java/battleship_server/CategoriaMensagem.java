@@ -1,4 +1,4 @@
-package battleship;
+package battleship_server;
 
 public enum CategoriaMensagem {
 	SET_NAME("SET_NAME (\\w+)"),
