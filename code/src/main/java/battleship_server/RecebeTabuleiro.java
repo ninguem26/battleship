@@ -30,15 +30,15 @@ public class RecebeTabuleiro implements Runnable {
 		Mensagem mensagem = Mensagem.trataMensagem(texto);
 		System.out.println(mensagem);
 
-		int[][] tabuleiroInt = new int[10][10];
+		char[][] tabuleiroInt = new char[10][10];
 
-		for (int i = 0; i < 100; i++) {
-			int j = Integer.parseInt("" + mensagem.getValue().charAt(i));
+		for (char i = 0; i < 100; i++) {
+			char j = mensagem.getValue().charAt(i);
 			tabuleiroInt[i / 10][i % 10] = j;
 		}
 
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
+		for (char i = 0; i < 10; i++) {
+			for (char j = 0; j < 10; j++) {
 				System.out.print(tabuleiroInt[i][j]);
 			}
 			System.out.println();

@@ -4,7 +4,7 @@ import java.net.Socket;
 
 public class Cliente {
 	private String nome;
-	private int[][] tabuleiro;
+	private char[][] tabuleiro;
 	private Socket socket;
 	private int pontuacao;
 
@@ -16,11 +16,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public int[][] getTabuleiro() {
+	public char[][] getTabuleiro() {
 		return tabuleiro;
 	}
 
-	public void setTabuleiro(int[][] tabuleiro) {
+	public void setTabuleiro(char[][] tabuleiro) {
 		this.tabuleiro = tabuleiro;
 	}
 

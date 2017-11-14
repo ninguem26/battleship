@@ -131,9 +131,9 @@ public class Sala implements Runnable {
 				int linha = num / 10;
 				int col = num % 10;
 
-				int tiro = espera.getTabuleiro()[linha][col];
+				char tiro = espera.getTabuleiro()[linha][col];
 
-				if (tiro != 0) {
+				if (tiro != '~') {
 					printStreamVez.println("HIT " + msg.getValue() + " " + tiro);
 					printStreamEspera.println("HIT " + msg.getValue() + " " + tiro);
 					vez.setPontuacao(vez.getPontuacao() + 1);
