@@ -24,7 +24,6 @@ public class RecebeTabuleiro implements Runnable {
 			e.printStackTrace();
 		}
 
-		printStream.println("Mande seu tabuleiro");
 		String texto = scanner.nextLine();
 
 		Mensagem mensagem = Mensagem.trataMensagem(texto);

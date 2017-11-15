@@ -10,7 +10,7 @@ public class Sala implements Runnable {
 	private Cliente convidado;
 	private Cliente vez;
 	private Cliente espera;
-	private static final int pontosGanha = 25;
+	private static final int pontosGanha = 30;
 
 	public Sala(String nome, Cliente dono) {
 		this.dono = dono;
@@ -80,8 +80,6 @@ public class Sala implements Runnable {
 			e.printStackTrace();
 		}
 
-		System.out.println("Pronto pra começar :)");
-
 		vez = null;
 		espera = null;
 
@@ -91,7 +89,7 @@ public class Sala implements Runnable {
 		Scanner scannerVez = null;
 		Scanner scannerEspera = null;
 
-		while (dono.getPontuacao() != pontosGanha && dono.getPontuacao() != pontosGanha) {
+		while (dono.getPontuacao() != pontosGanha && convidado.getPontuacao() != pontosGanha) {
 
 			System.out.println("Dono: " + dono.getPontuacao());
 			System.out.println("Convidado: " + convidado.getPontuacao());
@@ -128,18 +126,18 @@ public class Sala implements Runnable {
 
 			if (msg.getCategoria() == CategoriaMensagem.ATTACK) {
 				int num = Integer.parseInt(msg.getValue());
-				int linha = num / 10;
-				int col = num % 10;
+				int col = num / 10;
+				int linha = num % 10;
 
 				char tiro = espera.getTabuleiro()[linha][col];
 
 				if (tiro != '~') {
-					printStreamVez.println("HIT " + msg.getValue() + " " + tiro);
-					printStreamEspera.println("HIT " + msg.getValue() + " " + tiro);
+					printStreamVez.println("HIT " + col + "" + linha + " " + tiro);
+					printStreamEspera.println("HIT " + col + "" + linha + " " + tiro);
 					vez.setPontuacao(vez.getPontuacao() + 1);
 				} else {
-					printStreamVez.println("WATER " + msg.getValue());
-					printStreamEspera.println("WATER " + msg.getValue());
+					printStreamVez.println("WATER " + col + "" + linha);
+					printStreamEspera.println("WATER " + col + "" + linha);
 				}
 			}
 

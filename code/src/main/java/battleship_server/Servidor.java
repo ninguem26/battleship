@@ -73,7 +73,6 @@ public class Servidor implements Runnable {
 					}
 				}
 				printStream.println(sb.toString());
-				break;
 			} else if (mensagem.getCategoria() == CategoriaMensagem.ENTER_ROOM) {
 				int n = Integer.parseInt(mensagem.getValue());
 

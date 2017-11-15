@@ -7,7 +7,7 @@ public enum CategoriaMensagem {
 	GET_ROOMS("GET_ROOMS"),
 	ENTER_ROOM("ENTER_ROOM (\\w+)"),
 	EXIT("EXIT"),
-	BOARD("BOARD (~|s|n|p|c){100}"),
+	BOARD("BOARD (~|S|N|P|C){100}"),
 	ATTACK("ATTACK \\d{2}\\b"),
 	INVALIDA("");
 
