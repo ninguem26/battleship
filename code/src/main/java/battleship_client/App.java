@@ -22,16 +22,17 @@ public class App {
 	private static String turn;
 	
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		Board b = new Board();
-		String command;
 		String startOpc;
 		
 		do{
+			clearScreen();
+			System.out.println("******************************");
 			System.out.println("**********Battleship**********");
-			System.out.println("");
+			System.out.println("******************************");
+			System.out.println();
 			System.out.println("1 - Start");
-			
+			System.out.println();
+
 			startOpc = input.getTextInput("Selecione uma das opções:   ('exit' para sair)");
 			
 			if(startOpc.equals("1") || startOpc.equals("start")){
@@ -42,15 +43,17 @@ public class App {
 	}
 	
 	public static void ipScreen() throws IOException{
+		System.out.println();
 		String ipAddress = input.getIpAddress();
+		System.out.println();
+		
 		if(!ipAddress.equals("exit")){
 			try{
 				socket = new Socket(ipAddress, 12345);
 				saida = new PrintStream(socket.getOutputStream());
 				scanner = new Scanner(socket.getInputStream());
+				clearScreen();
 				System.out.println("Você está conectado!!!");
-				System.out.println();
-				System.out.println();
 				System.out.println();
 				optionsScreen();
 			}catch(UnknownHostException e){
@@ -75,17 +78,26 @@ public class App {
 			}
 		}while(!matches);
 		
+		clearScreen();
+		
 		saida.println("SET_NAME " + playerNome);
 		scanner.nextLine();
 		do{
+			System.out.println("******************************");
+			System.out.println("*************Menu*************");
+			System.out.println("******************************");
+			System.out.println();
 			System.out.println("1 - Entrar em uma sala");
 			System.out.println("2 - Criar uma sala");
+			System.out.println();
 			
 			optionsOpt = input.getTextInput("Selecione uma das opções:   ('exit' para sair)");
 			
 			if(optionsOpt.equals("1") || optionsOpt.equals("entrar")){
+				clearScreen();
 				roomsScreen();
 			}else if(optionsOpt.equals("2") || optionsOpt.equals("criar")){
+				clearScreen();
 				createRoomScreen();
 			}
 		}while(!optionsOpt.equals("exit"));
@@ -101,6 +113,7 @@ public class App {
 		String[] roomsArray = rooms.split("\n");
 		System.out.println(roomsArray.length);
 		if(!rooms.isEmpty()){
+			clearScreen();
 			System.out.println(rooms);
 				
 			roomOpt = input.getTextInput("Selecione uma das salas disponíveis:   ('exit' para sair)");
@@ -111,17 +124,20 @@ public class App {
 						System.out.println("Entrando na sala...");
 						oponenteNome = scanner.nextLine();	//Não remover essas linhas
 						oponenteNome = scanner.nextLine();	//XGH forte aqui
-						System.out.println(oponenteNome);
+						clearScreen();
 						boardRoom();
 					}else{
+						clearScreen();
 						System.out.println("Opção inválida!");
 					}
 				}catch(Exception e){
+					clearScreen();
 					System.out.println("Opção inválida!");
 					System.out.println();
 				}
 			}
 		}else{
+			clearScreen();
 			System.out.println("Nenhuma sala disponível!");
 			System.out.println();
 		}
@@ -144,10 +160,12 @@ public class App {
 		
 		saida.println("OPEN_ROOM " + nome);
 		
+		clearScreen();
+		
 		System.out.println("Sala criada! Aguardando oponente...");
 		
 		oponenteNome = scanner.nextLine();
-		System.out.println(oponenteNome);
+		clearScreen();
 		boardRoom();
 	}
 	
@@ -160,8 +178,10 @@ public class App {
 			command = input.getAddShipInput();
 			
 			if(command.equals("clear")){
+				clearScreen();
 				tabuleiro.clear();
 			}else{
+				clearScreen();
 				tabuleiro.addShip(input.getCoordX(command), 
 						input.getCoordY(command), 
 						input.getDir(command), 
@@ -171,9 +191,11 @@ public class App {
 		
 		saida.println("BOARD " + tabuleiro.matrixToString());
 		
+		clearScreen();
 		System.out.println("Aguardando adversário...");
 		
 		turn = scanner.nextLine();
+		clearScreen();
 		gameRoom();
 	}
 	
@@ -198,25 +220,31 @@ public class App {
 				System.out.println(hit);
 				
 				if(hit.split(" ")[0].equals("HIT")){
+					clearScreen();
 					tabuleiroOponente.markBoard(
 							Integer.parseInt(coord[1]), 
 							Integer.parseInt(coord[0]), 
 							hit.split(" ")[2].charAt(0));
+					System.out.println("Acertou embarcação em: (" + coord[1] + ", " + coord[2] + ")");
+					System.out.println();
 				}else{
 					tabuleiroOponente.markBoard(
 							Integer.parseInt(coord[1]), 
 							Integer.parseInt(coord[0]), 
 							'X');
+					System.out.println("Tiro na água em: (" + coord[1] + ", " + coord[0] + ")");
+					System.out.println();
 				}
+				
 				turn = scanner.nextLine();
-				System.out.println(turn);
 			}else if(turn.equals("WAIT")){
-				tabuleiro.render();
+				tabuleiroOponente.render();
 				System.out.println("Aguardando turno de " + oponenteNome.split(" ")[1]);
 				
 				hit = scanner.nextLine();
 				System.out.println(hit);
 				
+				String wasHit = hit.split(" ")[0];
 				String coords = hit.split(" ")[1];
 				
 				tabuleiro.markBoard(
@@ -224,8 +252,17 @@ public class App {
 						Integer.parseInt("" + coords.charAt(0)), 
 						'X');
 				
+				if(wasHit.equals("HIT")){
+					clearScreen();
+					System.out.println("Oponente acertou embarcação em: (" + coords.charAt(1) + ", " + coords.charAt(0) + ")");
+					System.out.println();
+				}else{
+					clearScreen();
+					System.out.println("Oponente atirou na água em: (" + coords.charAt(1) + ", " + coords.charAt(0) + ")");
+					System.out.println();
+				}
+				
 				turn = scanner.nextLine();
-				System.out.println(turn);
 			}
 		}while(!turn.equals("WIN") || !turn.equals("LOSE"));
 		
@@ -234,5 +271,10 @@ public class App {
 		}else{
 			System.out.println(oponenteNome.split(" ")[1] + "Te derrotou. Mais sorte na próxima!");
 		}
+	}
+	
+	public static void clearScreen(){
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
 	}
 }

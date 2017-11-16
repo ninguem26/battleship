@@ -126,8 +126,15 @@ public class Board {
 	}
 	
 	public void render(){
-		System.out.println("Tabuleiro");
-		System.out.println("");
+		System.out.println("****************************************");
+		System.out.println("**********Monte seu tabuleiro!**********");
+		System.out.println("****************************************");
+		System.out.println();
+		System.out.println("S - Submarinos: 		" + maxSubmarines);
+		System.out.println("C - Contratorpedeiro: 		" + maxDestroyers);
+		System.out.println("N - Navio-Tanque: 		" + maxTankers);
+		System.out.println("P - Porta-Aviões: 		" + maxACarriers);
+		System.out.println();
 		System.out.println("  0 1 2 3 4 5 6 7 8 9");
 		for(int i = 0; i < N_LINES; i++){
 			System.out.print(i + " ");
@@ -136,6 +143,8 @@ public class Board {
 			}
 			System.out.println("");
 		}
+		System.out.println();
+		System.out.println("Sequência para adicionar uma peça: linha, coluna, direção(0 - horizontal, 1 - vertical), navio");
 	}
 	
 	public boolean confirmEdit(){
