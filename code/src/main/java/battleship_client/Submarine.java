@@ -1,8 +1,8 @@
 package battleship_client;
 
-public class Submarine extends Ship{
-	
-	public Submarine(){
+public class Submarine extends Ship {
+
+	public Submarine() {
 		super();
 		length = 2;
 		name = "Submarino";
@@ -12,5 +12,5 @@ public class Submarine extends Ship{
 	@Override
 	public String toString() {
 		return "Submarine [name=" + name + ", length=" + length + "]";
-	}	
+	}
 }

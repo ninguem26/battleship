@@ -2,6 +2,9 @@ package battleship_server;
 
 import java.net.Socket;
 
+/*
+ * Java bean com dados do cliente.
+ */
 public class Cliente {
 	private String nome;
 	private char[][] tabuleiro;

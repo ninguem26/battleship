@@ -1,8 +1,8 @@
 package battleship_client;
 
-public class AircraftCarrier extends Ship{
+public class AircraftCarrier extends Ship {
 
-	public AircraftCarrier(){
+	public AircraftCarrier() {
 		super();
 		length = 5;
 		name = "Porta-Aviões";

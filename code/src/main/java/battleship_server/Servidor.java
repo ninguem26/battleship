@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+ * Classe responsável pela interação com o usuário até que este seja alocado a uma sala.
+ * Fornece funções de criação e verificação de salas. 
+ */
 public class Servidor implements Runnable {
 
 	private static List<Sala> salas = new ArrayList<Sala>();
@@ -45,7 +49,7 @@ public class Servidor implements Runnable {
 
 		System.out.println("Cliente " + cliente.getNome());
 
-		//printStream.println("WELCOME");
+		// printStream.println("WELCOME");
 
 		// Sala
 

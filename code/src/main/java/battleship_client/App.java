@@ -116,14 +116,14 @@ public class App {
 		String roomOpt;
 
 		saida.println("GET_ROOMS");
-		
+
 		rooms = scanner.nextLine();
 
 		String[] roomsArray = rooms.split("#");
 		if (!rooms.isEmpty()) {
 			clearScreen();
-			
-			for(int i = 0; i < roomsArray.length; i++){
+
+			for (int i = 0; i < roomsArray.length; i++) {
 				System.out.println(roomsArray[i]);
 			}
 
@@ -159,7 +159,8 @@ public class App {
 		String nome;
 
 		do {
-			nome = input.getTextInput("Informe o nome da sala:   (Nomes compostos e caracteres especiais são inválidos)");
+			nome = input
+					.getTextInput("Informe o nome da sala:   (Nomes compostos e caracteres especiais são inválidos)");
 
 			matches = nomePattern.matcher(nome).matches();
 			if (!matches) {

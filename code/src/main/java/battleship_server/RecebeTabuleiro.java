@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/*
+ * Classe responsável por receber e montar os tabuleiros dos jogadores. 
+ * Foi feita uma classe separada porque existe apenas uma thread de sala para os clientes, 
+ * o que não permitiria que os clientes mandassem seus tabuleiros em paralelo.
+ */
 public class RecebeTabuleiro implements Runnable {
 	private Cliente cliente;
 
@@ -42,7 +47,7 @@ public class RecebeTabuleiro implements Runnable {
 			}
 			System.out.println();
 		}
-		
+
 		this.cliente.setTabuleiro(tabuleiroInt);
 
 	}

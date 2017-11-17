@@ -4,17 +4,22 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/*
+ * Classe contendo a lógica do jogo.
+ */
 public class Sala implements Runnable {
 	private String nome;
 	private Cliente dono;
 	private Cliente convidado;
 	private Cliente vez;
 	private Cliente espera;
+	private boolean cheia;
 	private static final int pontosGanha = 30;
 
 	public Sala(String nome, Cliente dono) {
 		this.dono = dono;
 		this.nome = nome;
+		this.cheia = false;
 	}
 
 	public String getNome() {
@@ -39,10 +44,11 @@ public class Sala implements Runnable {
 
 	public void setConvidado(Cliente convidado) {
 		this.convidado = convidado;
+		this.cheia = true;
 	}
 
 	public boolean cheia() {
-		return this.getConvidado() != null;
+		return this.cheia;
 	}
 
 	@Override

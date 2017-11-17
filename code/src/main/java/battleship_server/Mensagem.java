@@ -1,5 +1,8 @@
 package battleship_server;
 
+/*
+ * Classe auxiliar para tratamento de mensagens.
+ */
 public class Mensagem {
 	private CategoriaMensagem categoria;
 	private String value;
@@ -67,5 +70,4 @@ public class Mensagem {
 		return mensagem;
 	}
 
-	
 }

@@ -1,8 +1,8 @@
 package battleship_client;
 
-public class Destroyer extends Ship{
+public class Destroyer extends Ship {
 
-	public Destroyer(){
+	public Destroyer() {
 		super();
 		length = 3;
 		name = "Contratorpedeiro";

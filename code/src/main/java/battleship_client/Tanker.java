@@ -1,8 +1,8 @@
 package battleship_client;
 
-public class Tanker extends Ship{
+public class Tanker extends Ship {
 
-	public Tanker(){
+	public Tanker() {
 		super();
 		length = 4;
 		name = "Navio-Tanque";

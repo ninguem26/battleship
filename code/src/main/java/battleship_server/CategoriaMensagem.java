@@ -1,8 +1,10 @@
 package battleship_server;
-
+/*
+ * Enum de mensagens tratadas pelo servidor.
+ * Cada mensagem tem um atributo regex usado na sua validação. 
+ */
 public enum CategoriaMensagem {
 	SET_NAME("SET_NAME (\\w+)"),
-	WELCOME("WELCOME"),
 	OPEN_ROOM("OPEN_ROOM (\\w+)"),
 	GET_ROOMS("GET_ROOMS"),
 	ENTER_ROOM("ENTER_ROOM (\\w+)"),
