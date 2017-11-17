@@ -1,5 +1,9 @@
 package battleship_client;
 
+
+/**
+ * Classe com métodos para manipular o tabuleiro e as peças do jogo.
+ * **/
 public class Board {
 
 	static int N_COLUMNS = 10;
@@ -21,12 +25,12 @@ public class Board {
 		}
 	}
 	
-	public void addShip(int x, int y, int dir, Ship ship){
+	public void addShip(int x, int y, char dir, Ship ship){
 //		x = x - 1;
 //		y = y - 1;
 		
 		if(canAdd(ship)){
-			if(dir == 0){
+			if(dir == 'H'){
 				if(x + ship.getLength() <= N_COLUMNS){
 					if(canPutInPosition(x, y, ship.getLength(), dir)){
 						for(int i = 0; i < ship.getLength(); i++){
@@ -37,7 +41,7 @@ public class Board {
 				}else{
 					System.out.println("O barco não pode ser colocado nesta posição!");
 				}
-			}else if(dir == 1){
+			}else if(dir == 'V'){
 				if(y + ship.getLength() <= N_LINES){
 					if(canPutInPosition(x, y, ship.getLength(), dir)){
 						for(int i = 0; i < ship.getLength(); i++){
@@ -105,15 +109,15 @@ public class Board {
 		return false;
 	}
 	
-	private boolean canPutInPosition(int x, int y, int length, int dir){
-		if(dir == 0){
+	private boolean canPutInPosition(int x, int y, int length, char dir){
+		if(dir == 'H'){
 			for(int i = 0; i < length; i++){
 				if(tabuleiro[y][x + i] != '~'){
 					System.out.println("Posição (" + x + ", " + y + ") já ocupada!");
 					return false;
 				}
 			}
-		}else if(dir == 1){
+		}else if(dir == 'V'){
 			for(int i = 0; i < length; i++){
 				if(tabuleiro[y + i][x] != '~'){
 					System.out.println("Posição (" + x + ", " + y + ") já ocupada!");
@@ -144,7 +148,20 @@ public class Board {
 			System.out.println("");
 		}
 		System.out.println();
-		System.out.println("Sequência para adicionar uma peça: linha, coluna, direção(0 - horizontal, 1 - vertical), navio");
+		System.out.println("coluna, linha, direção(H - horizontal, V - vertical), navio");
+	}
+	
+	public void render(String mensagem){
+		System.out.println(mensagem);
+		System.out.println();
+		System.out.println("  0 1 2 3 4 5 6 7 8 9");
+		for(int i = 0; i < N_LINES; i++){
+			System.out.print(i + " ");
+			for(int j = 0; j < N_COLUMNS; j++){
+				System.out.print(tabuleiro[i][j] + " ");
+			}
+			System.out.println("");
+		}
 	}
 	
 	public boolean confirmEdit(){

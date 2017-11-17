@@ -45,7 +45,7 @@ public class Servidor implements Runnable {
 
 		System.out.println("Cliente " + cliente.getNome());
 
-		printStream.println("WELCOME");
+		//printStream.println("WELCOME");
 
 		// Sala
 
@@ -69,7 +69,7 @@ public class Servidor implements Runnable {
 					Sala sala = salas.get(i);
 					if (sala != null && !sala.cheia()) {
 						sb.append(i + " " + sala.getNome() + " " + sala.getDono().getNome());
-						sb.append("\n");
+						sb.append("#");
 					}
 				}
 				printStream.println(sb.toString());

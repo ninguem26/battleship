@@ -1,5 +1,9 @@
 package battleship_client;
 
+
+/**
+ * Classe base para os demais tipos de navios.
+ * **/
 public class Ship {
 
 	protected String name;

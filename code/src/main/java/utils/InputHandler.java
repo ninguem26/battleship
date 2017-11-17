@@ -9,6 +9,10 @@ import battleship_client.Ship;
 import battleship_client.Submarine;
 import battleship_client.Tanker;
 
+/**
+ * Classe com métodos para tratamentos de inputs, como validação de endereços IPs e
+ * de entradas específicas do jogo.
+ * **/
 public class InputHandler {
 
 	private static final Pattern IPV4_PATTERN = Pattern.compile(
@@ -59,7 +63,7 @@ public class InputHandler {
 		String[] data;
 		
 		do{
-			System.out.println("Informe a posição do ataque:   (linha, coluna)");
+			System.out.println("Informe a posição do ataque:   (coluna, linha)");
 			command = getTextInput();
 			
 			data = command.split(" ");
@@ -86,8 +90,8 @@ public class InputHandler {
 		return Integer.parseInt(command.split(" ")[1]);
 	}
 	
-	public int getDir(String command){
-		return Integer.parseInt(command.split(" ")[2]);
+	public char getDir(String command){
+		return command.split(" ")[2].charAt(0);
 	}
 	
 	public Ship getShip(String command){
@@ -124,13 +128,18 @@ public class InputHandler {
 			try{
 				int i = Integer.parseInt(commands[0]);
 				int j = Integer.parseInt(commands[1]);
-				int k = Integer.parseInt(commands[2]);
 			}catch(Exception e){
-				System.out.println("Um dos dados está incorreto!");
+				System.out.println("Uma das coordenadas é inválida!!!");
 				return false;
 			}
 			
+			String dir = commands[2];
 			String ship = commands[3];
+			
+			if(dir.length() > 1 || (dir.charAt(0) != 'H' && ship.charAt(0) != 'V')){
+				System.out.println("Direção inválida!!!");
+				return false;
+			}
 			
 			if(ship.length() > 1 || (ship.charAt(0) != 'S' && ship.charAt(0) != 'P' && 
 					ship.charAt(0) != 'C' && ship.charAt(0) != 'N')){
